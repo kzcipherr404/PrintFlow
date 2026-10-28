@@ -1,0 +1,9 @@
+
+target/
+*.class
+.idea/
+.vscode/
+.DS_Store
+
+# Runtime data: do not commit real customer records
+data/*.json
