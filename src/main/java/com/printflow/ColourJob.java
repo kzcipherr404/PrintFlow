@@ -43,7 +43,7 @@ public class ColourJob {
         double total = bw.calculateCost()
                 + colour.calculateCost();
 
-        System.out.println("Total printing cost: K" + total);
+        System.out.println("Total printing cost is : K" + total);
     }
 
 }
