@@ -1,25 +1,30 @@
 package com.printflow;
 
-import java.util.Scanner;
+abstract class PrintJob {
 
-public class BlackWhiteJob {
+    protected int pages;
 
-    private int pages;
-    private double costPerPage = 2.00;
-
-    public void getInput() {
-        Scanner input = new Scanner(System.in);
-
-        System.out.print("Enter number of black-and-white pages: ");
-        pages = input.nextInt();
+    // Parent constructor
+    public PrintJob(int pages) {
+        this.pages = pages;
     }
 
-    public double calculateCost() {
+    // Abstract method
+    public abstract double getCost();
+}
+
+public class BlackWhiteJob extends PrintJob {
+
+    private final double costPerPage = 2.00;
+
+    // Constructor
+    public BlackWhiteJob(int pages) {
+        super(pages);
+    }
+
+    // Override parent method
+    @Override
+    public double getCost() {
         return pages * costPerPage;
-    }
-
-    public void displayCost() {
-        System.out.println("Black-and-white printing cost: K"
-                + calculateCost());
     }
 }
