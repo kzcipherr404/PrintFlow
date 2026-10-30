@@ -1,4 +1,3 @@
-
 package com.printflow;
 
 import java.util.Scanner;
@@ -32,8 +31,8 @@ public class ColourJob extends PrintJob {
         int colourPages = input.nextInt();
 
         // Create printing objects
-        BlackWhiteJob blackWhite = new BlackWhiteJob(bwPages);
-        ColourJob colour = new ColourJob(colourPages);
+        PrintJob blackWhite = new BlackWhiteJob(bwPages);
+        PrintJob colour = new ColourJob(colourPages);
 
         // Display printing costs
         System.out.println("\n----- PRINTING COSTS -----");
