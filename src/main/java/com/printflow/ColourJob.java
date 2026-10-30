@@ -1,5 +1,8 @@
 package com.printflow;
     
+com.printflow.BlackWhiteJob
+
+Source: printflow
 import java.util.Scanner;
 
 public class ColourJob {
