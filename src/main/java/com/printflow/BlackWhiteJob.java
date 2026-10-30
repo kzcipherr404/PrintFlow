@@ -1,15 +1,22 @@
+
 package com.printflow;
 
+// Black-and-white printing job inherits from PrintJob
 public class BlackWhiteJob extends PrintJob {
 
-    private final double costPerPage = 2.00;
+    // Fixed cost for printing one black-and-white page
+    private static final double COST_PER_PAGE = 2.00;
 
-    public BlackWhiteJob(int pages) {
-        super(pages);
+    // Constructor passes job details to the parent class
+    public BlackWhiteJob(String jobId, Customer customer, int pages) {
+        super(jobId, customer, pages);
     }
 
+    // Overrides the parent's abstract getCost() method
     @Override
     public double getCost() {
-        return pages * costPerPage;
+
+        // Calculate cost using the number of pages
+        return getPages() * COST_PER_PAGE;
     }
 }
