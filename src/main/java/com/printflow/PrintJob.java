@@ -43,3 +43,13 @@ public abstract class PrintJob {
 
     public abstract double getCost();
 }
+abstract class PrintJob {
+    protected int pages;
+
+    //Parent constructor
+    public PrintJob(int pages) {
+        this.pages = pages;
+    }
+    //Abstract method 
+    public abstract double getCost();   
+}
