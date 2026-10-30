@@ -1,53 +1,56 @@
-package com.printflow;
-    
-com.printflow.BlackWhiteJob
 
-Source: printflow
+package com.printflow;
+
 import java.util.Scanner;
 
-public class ColourJob {
+public class ColourJob extends PrintJob {
 
-    private int pages;
-    private double costPerPage = 5.00;
+    private final double costPerPage = 5.00;
 
-    public void getInput() {
-        Scanner input = new Scanner(System.in);
-
-        System.out.print("Enter number of colour pages: ");
-        pages = input.nextInt();
+    // Constructor
+    public ColourJob(int pages) {
+        super(pages);
     }
 
-    public double calculateCost() {
+    // Override parent method
+    @Override
+    public double getCost() {
         return pages * costPerPage;
     }
 
-    public void displayCost() {
-        System.out.println("Colour printing cost: K"
-                + calculateCost());
-    }
-
+    // Main application
     public static void main(String[] args) {
 
-        // Create BlackWhiteJob object
-        BlackWhiteJob bw = new BlackWhiteJob();
+        Scanner input = new Scanner(System.in);
 
-        // Create ColourJob object
-        ColourJob colour = new ColourJob();
+        // Enter black-and-white pages
+        System.out.print("Enter number of black-and-white pages: ");
+        int bwPages = input.nextInt();
 
-        // Each class collects its own input
-        bw.getInput();
-        colour.getInput();
+        // Enter colour pages
+        System.out.print("Enter number of colour pages: ");
+        int colourPages = input.nextInt();
 
-        // Display individual costs
-        bw.displayCost();
-        colour.displayCost();
+        // Create printing objects
+        BlackWhiteJob blackWhite = new BlackWhiteJob(bwPages);
+        ColourJob colour = new ColourJob(colourPages);
+
+        // Display printing costs
+        System.out.println("\n----- PRINTING COSTS -----");
+
+        System.out.println("Black-and-white printing cost: K"
+                + blackWhite.getCost());
+
+        System.out.println("Colour printing cost: K"
+                + colour.getCost());
 
         // Calculate total cost
-        double total = bw.calculateCost()
-                + colour.calculateCost();
+        double totalCost = blackWhite.getCost()
+                + colour.getCost();
 
-        System.out.println("Total printing cost: K" + total);
+        System.out.println("--------------------------");
+        System.out.println("Total printing cost: K" + totalCost);
+
+        input.close();
     }
 }
-
-
