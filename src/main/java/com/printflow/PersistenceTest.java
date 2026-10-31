@@ -4,7 +4,7 @@ public class PersistenceTest {
     public static void main(String[] args) {
 
         // Create a new queue using the same file
-        PrintQueue queue = new PrintQueue("test-jobs.txt");
+        PrintQueue queue = new PrintQueue("test-jobs.json");
 
         // Check whether previously saved jobs were loaded
         System.out.println(

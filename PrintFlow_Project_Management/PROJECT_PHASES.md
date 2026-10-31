@@ -27,11 +27,11 @@ Use this page to choose work, then let the group leader assign the final tasks i
 ## Phase 3 — API and saved data
 **Target: 30–31 October**
 
-| Task | Work | Assigned to | Status |
-|---|---|---|---|
-| P3-A | Build and test `GET /jobs`, `POST /jobs`, and `GET /jobs/{id}/position` | Unassigned | Open |
-| P3-B | Build and test `PUT /jobs/{id}/status` and `DELETE /jobs/{id}` | Unassigned | Open |
-| P3-C | Save jobs to JSON and load them when the app starts; test after restarting | Unassigned | Open |
+| Task | Work                                                                       | Assigned to   | Status |
+| ---- | -------------------------------------------------------------------------- | ------------- | ------ |
+| P3-A | Build and test `GET /jobs`, `POST /jobs`, and `GET /jobs/{id}/position`    | Kondwani Zulu | Done   |
+| P3-B | Build and test `PUT /jobs/{id}/status` and `DELETE /jobs/{id}`             | Kondwani Zulu | Done   |
+| P3-C | Save jobs to JSON and load them when the app starts; test after restarting | Kondwani Zulu | Done   |
 
 ## Phase 4 — Web page
 **Target: 1 November**
