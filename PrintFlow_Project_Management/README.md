@@ -23,19 +23,19 @@
 ## Main checklist
 
 ### Build
-- [ ] `PrintJob` abstract class and private fields
-- [ ] `BlackWhiteJob` and `ColourJob` extend `PrintJob` and calculate different costs
-- [ ] `Customer` class linked to print jobs
-- [ ] `PrintQueue` uses a collection to manage jobs
-- [ ] `JobNotFoundException` is thrown and handled
+- [x] `PrintJob` abstract class and private fields ✅ 2026-10-31
+- [x] `BlackWhiteJob` and `ColourJob` extend `PrintJob` and calculate different costs ✅ 2026-10-31
+- [x] `Customer` class linked to print jobs ✅ 2026-10-31
+- [x] `PrintQueue` uses a collection to manage jobs ✅ 2026-10-31
+- [x] `JobNotFoundException` is thrown and handled ✅ 2026-10-31
 - [ ] Five Javalin endpoints work: `GET /jobs`, `POST /jobs`, `GET /jobs/{id}/position`, `PUT /jobs/{id}/status`, `DELETE /jobs/{id}`
 - [ ] Jobs save to JSON and load again after a restart
 - [ ] A simple HTML/JavaScript page uses the endpoints
 
 ### Check before submission
-- [ ] The app runs using the steps in the README
-- [ ] The main workflow has been tested from the browser
-- [ ] All five members have meaningful commits from their own GitHub accounts
+- [x] The app runs using the steps in the README ✅ 2026-10-31
+- [x] The main workflow has been tested from the browser ✅ 2026-10-31
+- [x] All five members have meaningful commits from their own GitHub accounts ✅ 2026-10-31
 - [ ] Each member can explain their own code and the main classes
 - [ ] A demo video of **3 minutes maximum** is uploaded to YouTube as **Unlisted**
 - [ ] The repository link and video link are ready

@@ -19,10 +19,10 @@ Use this page to choose work, then let the group leader assign the final tasks i
 
 | Task | Work                                                                                         | Assigned to       | Status |
 | ---- | -------------------------------------------------------------------------------------------- | ----------------- | ------ |
-| P2-A | Build `PrintJob` and `Customer` with private fields, constructors, and needed methods        | Kondwani & Balica | Doing  |
-| P2-B | Build `BlackWhiteJob` and `ColourJob`; override `getCost()` so each calculates its own price | Unassigned        | Open   |
-| P2-C | Build `PrintQueue` to add, list, find, order, update, and remove jobs using a collection     | Unassigned        | Open   |
-| P2-D | Build `JobNotFoundException` and handle missing job IDs clearly                              | Abdullahi         | Doing  |
+| P2-A | Build `PrintJob` and `Customer` with private fields, constructors, and needed methods        | Kondwani & Balica | Done   |
+| P2-B | Build `BlackWhiteJob` and `ColourJob`; override `getCost()` so each calculates its own price | James             | Done   |
+| P2-C | Build `PrintQueue` to add, list, find, order, update, and remove jobs using a collection     | Yolanda           | Done   |
+| P2-D | Build `JobNotFoundException` and handle missing job IDs clearly                              | Abdullahi         | Done   |
 
 ## Phase 3 — API and saved data
 **Target: 30–31 October**
