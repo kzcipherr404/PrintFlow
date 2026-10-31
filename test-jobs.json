@@ -1,0 +1,10 @@
+[ {
+  "jobId" : "P001",
+  "type" : "BW",
+  "customer" : {
+    "name" : "Kondwani Zulu",
+    "contactNumber" : "0970000001"
+  },
+  "pages" : 9,
+  "status" : "PRINTING"
+} ]

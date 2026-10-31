@@ -5,7 +5,7 @@ public class PrintQueueTest {
     public static void main(String[] args) {
 
         // Create a queue that stores jobs in a file
-        PrintQueue queue = new PrintQueue("test-jobs.txt");
+        PrintQueue queue = new PrintQueue("test-jobs.json");
 
         // Create a customer
         Customer customer = new Customer(

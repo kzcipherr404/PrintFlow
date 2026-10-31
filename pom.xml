@@ -11,6 +11,7 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <exec.mainClass>com.printflow.Main</exec.mainClass>
     </properties>
 
     <dependencies>
@@ -46,9 +47,9 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
-                    <mainClass>com.printflow.Main</mainClass>
+                    <mainClass>${exec.mainClass}</mainClass>
                 </configuration>
-            </plugin>
+            </plugin>       
         </plugins>
     </build>
 

@@ -26,6 +26,7 @@ PrintFlow is a printing shop queue management system designed to help printing s
 Phase 1: Project setup and design.
 Phase 2: Build the Java classes
 Phase 3: API and Saved data
+Phase 4: Web Page
 
 ## Running the Project
 Prerequisites: JDK 21 and Maven.
