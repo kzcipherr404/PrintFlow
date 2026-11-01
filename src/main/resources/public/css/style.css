@@ -128,3 +128,53 @@ body {
     max-width: 450px;
   }
 }
+#lookup-section {
+  margin-top: 24px;
+}
+
+#lookup-form .btn {
+  width: 100%;
+}
+
+#lookup-result p {
+  margin: 4px 0;
+}
+
+#queue-section {
+  margin-top: 24px;
+}
+
+.queue-updated {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: #555555;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+#queue-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+#queue-table th,
+#queue-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid #e1e3e7;
+  white-space: nowrap;
+}
+
+#queue-table th {
+  background: #eef0f3;
+}
+
+@media (min-width: 600px) {
+  #lookup-form .btn {
+    width: auto;
+  }
+}

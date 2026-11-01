@@ -237,3 +237,157 @@ if (updateButton) {
 if (cancelButton) {
   cancelButton.addEventListener("click", cancelPrintJob);
 }
+var QUEUE_REFRESH_MS = 10000;
+
+var STATUS_NOTES = {
+  QUEUED: "Your job is waiting in the queue.",
+  PRINTING: "Your job is being printed now.",
+  READY: "Your job is ready. Please come and collect it.",
+  COLLECTED: "This job has already been collected."
+};
+
+async function fetchJobs() {
+  var response = await fetch("/api/jobs");
+
+  if (!response.ok) {
+    throw new Error("Could not load the queue.");
+  }
+
+  return response.json();
+}
+
+function typeLabel(type) {
+  return type === "COLOUR" ? "Colour" : "Black and white";
+}
+
+function makeCell(text) {
+  var cell = document.createElement("td");
+  cell.textContent = text;
+  return cell;
+}
+
+function renderQueue(jobs) {
+  var body = document.getElementById("queue-body");
+  body.innerHTML = "";
+
+  jobs.forEach(function (job, index) {
+    var row = document.createElement("tr");
+
+    row.appendChild(makeCell(index + 1));
+    row.appendChild(makeCell(job.jobId));
+    row.appendChild(makeCell(job.customer ? job.customer.name : ""));
+    row.appendChild(makeCell(job.pages));
+    row.appendChild(makeCell(typeLabel(job.type)));
+    row.appendChild(makeCell(job.status));
+
+    body.appendChild(row);
+  });
+
+  document.getElementById("queue-empty").hidden = jobs.length > 0;
+  document.getElementById("queue-updated").textContent =
+    "Last updated at " + new Date().toLocaleTimeString();
+}
+
+async function loadQueue() {
+  try {
+    var jobs = await fetchJobs();
+    renderQueue(jobs);
+    showMessage("queue-message", "", "");
+  } catch (error) {
+    showMessage(
+      "queue-message",
+      "Could not load the queue. Check that PrintFlow is running.",
+      "error"
+    );
+  }
+}
+
+async function lookupJob(event) {
+  event.preventDefault();
+
+  var typed = document.getElementById("lookup-id").value.trim();
+  var resultBox = document.getElementById("lookup-result");
+  var button = document.getElementById("lookup-btn");
+
+  showMessage("lookup-message", "", "");
+  resultBox.hidden = true;
+
+  if (typed === "") {
+    showMessage("lookup-message", "Please enter your job ID.", "error");
+    return;
+  }
+
+  button.disabled = true;
+
+  try {
+    var jobs = await fetchJobs();
+    renderQueue(jobs);
+
+    var match = jobs.find(function (job) {
+      return job.jobId.toLowerCase() === typed.toLowerCase();
+    });
+    var jobId = match ? match.jobId : typed;
+
+    var response = await fetch(
+      "/api/jobs/" + encodeURIComponent(jobId) + "/position"
+    );
+
+    var data = null;
+    try {
+      data = await response.json();
+    } catch (parseError) {
+      data = null;
+    }
+
+    if (response.ok && data && data.position) {
+      var status = match ? match.status : "";
+
+      document.getElementById("lookup-job-id").textContent = jobId;
+      document.getElementById("lookup-position").textContent = data.position;
+      document.getElementById("lookup-status").textContent = status || "Unknown";
+      document.getElementById("lookup-note").textContent = STATUS_NOTES[status] || "";
+      resultBox.hidden = false;
+    } else if (response.status === 404) {
+      showMessage(
+        "lookup-message",
+        "No job with that ID was found. Check the ID and try again.",
+        "error"
+      );
+    } else {
+      showMessage(
+        "lookup-message",
+        data && data.error ? data.error : "Could not check the position.",
+        "error"
+      );
+    }
+  } catch (error) {
+    showMessage(
+      "lookup-message",
+      "Could not connect to PrintFlow. Please try again.",
+      "error"
+    );
+  } finally {
+    button.disabled = false;
+  }
+}
+
+var lookupForm = document.getElementById("lookup-form");
+var refreshButton = document.getElementById("refresh-btn");
+
+if (lookupForm) {
+  lookupForm.addEventListener("submit", lookupJob);
+}
+
+if (refreshButton) {
+  refreshButton.addEventListener("click", loadQueue);
+}
+
+if (document.getElementById("queue-body")) {
+  loadQueue();
+
+  setInterval(function () {
+    if (!document.hidden) {
+      loadQueue();
+    }
+  }, QUEUE_REFRESH_MS);
+}

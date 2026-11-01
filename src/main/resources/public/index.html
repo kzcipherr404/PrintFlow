@@ -55,6 +55,55 @@
         <p>Keep this ID. You need it to check your place in the queue.</p>
       </div>
     </section>
+        <section id="lookup-section" class="card">
+      <h2>Check my job</h2>
+      <p>Enter the job ID you were given when you submitted your job.</p>
+
+      <form id="lookup-form" novalidate>
+        <div class="field">
+          <label for="lookup-id">Job ID</label>
+          <input id="lookup-id" name="lookupId" type="text" placeholder="For example PF-1a2b3c4d" autocomplete="off" required>
+        </div>
+
+        <button id="lookup-btn" type="submit" class="btn">Check position</button>
+      </form>
+
+      <p id="lookup-message" class="message" role="alert" aria-live="polite"></p>
+
+      <div id="lookup-result" class="result" hidden>
+        <p>Job <strong id="lookup-job-id"></strong></p>
+        <p>Position in the queue: <strong id="lookup-position"></strong></p>
+        <p>Status: <strong id="lookup-status"></strong></p>
+        <p id="lookup-note"></p>
+      </div>
+    </section>
+
+    <section id="queue-section" class="card">
+      <h2>Current queue</h2>
+
+      <button id="refresh-btn" type="button" class="btn">Refresh</button>
+      <p id="queue-updated" class="queue-updated"></p>
+
+      <p id="queue-message" class="message" role="alert" aria-live="polite"></p>
+
+      <div class="table-wrap">
+        <table id="queue-table">
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Job ID</th>
+              <th>Customer</th>
+              <th>Pages</th>
+              <th>Type</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="queue-body"></tbody>
+        </table>
+      </div>
+
+      <p id="queue-empty" hidden>There are no jobs in the queue.</p>
+    </section>
 
         <!-- P4-C: Operator Controls -->
     <section id="operator-section" class="card">
