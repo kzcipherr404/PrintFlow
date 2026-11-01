@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrintFlow Queue Tracker</title>
+  <meta name="description" content="Submit a print job to the printing shop and get a job ID to track it.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231f4e79'/%3E%3Ctext x='16' y='22' font-size='16' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'%3EPF%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>PrintFlow</h1>
+    <p>Printing shop queue tracker</p>
+  </header>
+
+  <main class="container">
+
+    <section id="submit-section" class="card">
+      <h2>Submit a print job</h2>
+
+      <form id="job-form" novalidate>
+        <div class="field">
+          <label for="customerName">Customer name</label>
+          <input id="customerName" name="customerName" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="field">
+          <label for="contactNumber">Contact number</label>
+          <input id="contactNumber" name="contactNumber" type="tel" autocomplete="tel" required>
+        </div>
+
+        <div class="field">
+          <label for="pages">Number of pages</label>
+          <input id="pages" name="pages" type="number" min="1" step="1" inputmode="numeric" required>
+        </div>
+
+        <div class="field">
+          <label for="printType">Printing type</label>
+          <select id="printType" name="printType" required>
+            <option value="BW">Black and white</option>
+            <option value="COLOUR">Colour</option>
+          </select>
+        </div>
+
+        <button id="submit-btn" type="submit" class="btn">Submit job</button>
+      </form>
+
+      <p id="submit-message" class="message" role="alert" aria-live="polite"></p>
+
+      <div id="job-result" class="result" hidden>
+        <p>Your job ID is</p>
+        <p id="job-id-value" class="job-id"></p>
+        <p id="job-details"></p>
+        <p>Keep this ID. You need it to check your place in the queue.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>PrintFlow, OOP group project</p>
+  </footer>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
