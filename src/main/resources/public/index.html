@@ -56,6 +56,46 @@
       </div>
     </section>
 
+        <!-- P4-C: Operator Controls -->
+    <section id="operator-section" class="card">
+      <h2>Operator Controls</h2>
+
+      <p>Update print job status or cancel a job using its ID.</p>
+
+      <form id="operator-form">
+        <div class="field">
+          <label for="operator-job-id">Job ID</label>
+          <input
+            id="operator-job-id"
+            name="jobId"
+            type="text"
+            placeholder="Enter job ID"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="operator-status">New status</label>
+          <select id="operator-status" name="status" required>
+            <option value="QUEUED">Queued</option>
+            <option value="PRINTING">Printing</option>
+            <option value="READY">Ready</option>
+            <option value="COLLECTED">Collected</option>
+          </select>
+        </div>
+
+        <button id="update-status-btn" type="button" class="btn">
+          Update Status
+        </button>
+
+        <button id="cancel-job-btn" type="button" class="btn">
+          Cancel Job
+        </button>
+      </form>
+
+      <p id="operator-message" class="message" role="alert" aria-live="polite"></p>
+    </section>
+
   </main>
 
   <footer class="site-footer">

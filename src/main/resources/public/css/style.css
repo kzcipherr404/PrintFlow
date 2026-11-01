@@ -74,3 +74,57 @@ body {
 @media (min-width: 600px) {
   #job-form .btn { width: auto; }
 }
+
+/* P4-C: Operator Controls */
+
+#operator-section {
+  margin-top: 24px;
+}
+
+#operator-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#operator-form input,
+#operator-form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#operator-form button {
+  cursor: pointer;
+}
+
+#cancel-job-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+#operator-message:empty {
+  display: none;
+}
+
+#operator-message.success {
+  color: #155724;
+  background-color: #d4edda;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#operator-message.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+@media (min-width: 600px) {
+  #operator-form {
+    max-width: 450px;
+  }
+}
