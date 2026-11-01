@@ -78,3 +78,162 @@ async function submitJob(event) {
     submitButton.disabled = false;
   }
 }
+
+// =====================================
+// P4-C: OPERATOR CONTROLS
+// =====================================
+
+// Update the status of an existing print job
+async function updateJobStatus() {
+  var jobId = document.getElementById("operator-job-id").value.trim();
+  var newStatus = document.getElementById("operator-status").value;
+  var button = document.getElementById("update-status-btn");
+
+  showMessage("operator-message", "", "");
+
+  if (jobId === "") {
+    showMessage(
+      "operator-message",
+      "Please enter a job ID.",
+      "error"
+    );
+    return;
+  }
+
+  button.disabled = true;
+
+  try {
+    var response = await fetch(
+      "/api/jobs/" + encodeURIComponent(jobId) + "/status",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          status: newStatus
+        })
+      }
+    );
+
+    var data = null;
+
+    try {
+      data = await response.json();
+    } catch (error) {
+      data = null;
+    }
+
+    if (response.ok) {
+      showMessage(
+        "operator-message",
+        data && data.message
+          ? data.message
+          : "Job status updated successfully.",
+        "success"
+      );
+    } else {
+      showMessage(
+        "operator-message",
+        data && data.error
+          ? data.error
+          : "Could not update the job status.",
+        "error"
+      );
+    }
+
+  } catch (error) {
+    showMessage(
+      "operator-message",
+      "Could not connect to PrintFlow. Please try again.",
+      "error"
+    );
+  } finally {
+    button.disabled = false;
+  }
+}
+
+
+// Cancel an existing print job
+async function cancelPrintJob() {
+  var jobId = document.getElementById("operator-job-id").value.trim();
+  var button = document.getElementById("cancel-job-btn");
+
+  showMessage("operator-message", "", "");
+
+  if (jobId === "") {
+    showMessage(
+      "operator-message",
+      "Please enter a job ID.",
+      "error"
+    );
+    return;
+  }
+
+  var confirmed = confirm(
+    "Are you sure you want to cancel job " + jobId + "?"
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  button.disabled = true;
+
+  try {
+    var response = await fetch(
+      "/api/jobs/" + encodeURIComponent(jobId),
+      {
+        method: "DELETE"
+      }
+    );
+
+    var data = null;
+
+    try {
+      data = await response.json();
+    } catch (error) {
+      data = null;
+    }
+
+    if (response.ok) {
+      showMessage(
+        "operator-message",
+        data && data.message
+          ? data.message
+          : "Job cancelled successfully.",
+        "success"
+      );
+    } else {
+      showMessage(
+        "operator-message",
+        data && data.error
+          ? data.error
+          : "Could not cancel the job.",
+        "error"
+      );
+    }
+
+  } catch (error) {
+    showMessage(
+      "operator-message",
+      "Could not connect to PrintFlow. Please try again.",
+      "error"
+    );
+  } finally {
+    button.disabled = false;
+  }
+}
+
+
+// Connect the buttons to their functions
+var updateButton = document.getElementById("update-status-btn");
+var cancelButton = document.getElementById("cancel-job-btn");
+
+if (updateButton) {
+  updateButton.addEventListener("click", updateJobStatus);
+}
+
+if (cancelButton) {
+  cancelButton.addEventListener("click", cancelPrintJob);
+}
